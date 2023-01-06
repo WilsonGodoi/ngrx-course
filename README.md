@@ -156,3 +156,12 @@ If you are looking for the Complete Typescript 2 Course - Build a REST API, the 
 
 ![Complete Typescript Course](https://angular-academy.s3.amazonaws.com/thumbnails/typescript-2-small.png)
 
+
+-------------------------------------
+To install NgRx run command: 
+  ng add @ngrx/store
+  ng add @ngrx/store-devtools
+
+Install this Chrome extension:
+https://chrome.google.com/webstore/detail/redux-devtools-next/oamphgegmigmlgkdnijmeomjenbmkbdg?hl=pt-PT
+
