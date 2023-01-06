@@ -165,3 +165,6 @@ To install NgRx run command:
 Install this Chrome extension:
 https://chrome.google.com/webstore/detail/redux-devtools-next/oamphgegmigmlgkdnijmeomjenbmkbdg?hl=pt-PT
 
+Run the command to create a ngrx store for an specific module. in this case for auth.module :
+ng g store auth/Auth --module auth.module.ts
+
