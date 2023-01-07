@@ -10,7 +10,7 @@ import {
   Router,
 } from "@angular/router";
 import { AppState } from "./reducers";
-import { login } from "./auth/auth.actions";
+import { login, logout } from "./auth/auth.actions";
 import { isLoggedIn, isLoggedOut } from "./auth/auth.selectors";
 
 @Component({
@@ -49,5 +49,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  logout() {}
+  logout() {
+    this.store.dispatch(logout());
+  }
 }
