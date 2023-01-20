@@ -26,6 +26,9 @@ import { CoursesHttpService } from "./services/courses-http.service";
 import { CoursesEffects } from "./courses.effects";
 import { CoursesResolver } from "./courses.resolver";
 
+import { StoreModule } from "@ngrx/store";
+import * as fromCourses from "./reducers/course.reducers";
+
 export const coursesRoutes: Routes = [
   {
     path: "",
@@ -57,6 +60,10 @@ export const coursesRoutes: Routes = [
     MatMomentDateModule,
     ReactiveFormsModule,
     RouterModule.forChild(coursesRoutes),
+    StoreModule.forFeature(
+      fromCourses.coursesFeatureKey,
+      fromCourses.coursesReducer
+    ),
     EffectsModule.forFeature([CoursesEffects]),
   ],
   declarations: [
