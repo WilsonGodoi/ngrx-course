@@ -16,18 +16,15 @@ import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 import { MatTabsModule } from "@angular/material/tabs";
 import { RouterModule, Routes } from "@angular/router";
-import { EffectsModule } from "@ngrx/effects";
+import { EntityDefinitionService, EntityMetadataMap } from "@ngrx/data";
 import { CourseComponent } from "./course/course.component";
 import { CoursesCardListComponent } from "./courses-card-list/courses-card-list.component";
 import { EditCourseDialogComponent } from "./edit-course-dialog/edit-course-dialog.component";
 import { HomeComponent } from "./home/home.component";
 import { CoursesHttpService } from "./services/courses-http.service";
 
-import { CoursesEffects } from "./courses.effects";
 import { CoursesResolver } from "./courses.resolver";
-
-import { StoreModule } from "@ngrx/store";
-import * as fromCourses from "./reducers/course.reducers";
+import { CourseEntityService } from "./services/course-entity.service";
 
 export const coursesRoutes: Routes = [
   {
@@ -40,6 +37,10 @@ export const coursesRoutes: Routes = [
     component: CourseComponent,
   },
 ];
+
+const entityMetadata: EntityMetadataMap = {
+  Course: {},
+};
 
 @NgModule({
   imports: [
@@ -60,11 +61,6 @@ export const coursesRoutes: Routes = [
     MatMomentDateModule,
     ReactiveFormsModule,
     RouterModule.forChild(coursesRoutes),
-    StoreModule.forFeature(
-      fromCourses.coursesFeatureKey,
-      fromCourses.coursesReducer
-    ),
-    EffectsModule.forFeature([CoursesEffects]),
   ],
   declarations: [
     HomeComponent,
@@ -79,8 +75,10 @@ export const coursesRoutes: Routes = [
     CourseComponent,
   ],
   entryComponents: [EditCourseDialogComponent],
-  providers: [CoursesHttpService, CoursesResolver],
+  providers: [CoursesHttpService, CoursesResolver, CourseEntityService],
 })
 export class CoursesModule {
-  constructor() {}
+  constructor(private eds: EntityDefinitionService) {
+    eds.registerMetadataMap(entityMetadata);
+  }
 }
