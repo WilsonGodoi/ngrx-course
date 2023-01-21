@@ -13,5 +13,10 @@ export const allCoursesLoaded = createAction(
 
 export const courseUpdated = createAction(
   "[Edit Course Dialog] Course Updated",
+  props<{ update: Update<Course>; courseOrigin: Update<Course> }>()
+);
+
+export const courseUpdatedRollback = createAction(
+  "[Edit Course Dialog ] Course Updated Rollback",
   props<{ update: Update<Course> }>()
 );

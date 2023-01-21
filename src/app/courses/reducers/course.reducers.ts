@@ -24,6 +24,9 @@ export const coursesReducer = createReducer(
   ),
   on(CourseActions.courseUpdated, (state, action) =>
     adapter.updateOne(action.update, state)
+  ),
+  on(CourseActions.courseUpdatedRollback, (state, action) =>
+    adapter.updateOne(action.update, state)
   )
 );
 

@@ -64,8 +64,12 @@ export class EditCourseDialogComponent {
     };
 
     const update: Update<Course> = { id: course.id, changes: course };
+    const courseOrigin: Update<Course> = {
+      id: course.id,
+      changes: { ...this.course },
+    };
 
-    this.store.dispatch(courseUpdated({ update }));
+    this.store.dispatch(courseUpdated({ update, courseOrigin }));
 
     this.dialogRef.close();
   }
